@@ -155,7 +155,7 @@ static bool PrintField(const FieldDescriptor &field_desc, Context *const context
 	// TODO: handle default values
 
 	const std::map<std::string, std::string> vars{
-		{"name", field_desc.name()},
+		{"name", std::string(field_desc.name())},
 		{"odin_type", GetOdinFieldTypeName(field_desc, context->proto_package)},
 		{"id", fmt::to_string(field_desc.number())},
 		{"proto_type", fmt::to_string((int) field_desc.type())},
@@ -191,7 +191,7 @@ static bool PrintField(const FieldDescriptor &field_desc, Context *const context
 static bool PrintOneof(const OneofDescriptor &oneof_desc, Context *const context)
 {
 	std::map<std::string, std::string> vars{
-		{"name", oneof_desc.name()},
+		{"name", std::string(oneof_desc.name())},
 	};
 
 	context->printer.Print(vars, "\n$name$: struct #raw_union {\n");
@@ -226,7 +226,7 @@ static bool PrintEnum(const EnumDescriptor &enum_desc, Context *const context)
 	{
 		const EnumValueDescriptor &value_desc = *enum_desc.value(idx);
 
-		vars["name"] = value_desc.name();
+		vars["name"] = std::string(value_desc.name());
 		vars["value"] = fmt::to_string(value_desc.number());
 
 		context->printer.Print(vars, "$name$ = $value$,\n");
