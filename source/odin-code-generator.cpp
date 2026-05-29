@@ -217,7 +217,7 @@ static bool PrintEnum(const EnumDescriptor &enum_desc, Context *const context)
 		{"name", ConvertFullTypeName(enum_desc.full_name(), context->proto_package)},
 	};
 
-	context->printer.Print(vars, "\n$name$ :: enum {\n");
+	context->printer.Print(vars, "\n$name$ :: enum i32 {\n");
 	context->printer.Indent();
 
 	vars.clear();
